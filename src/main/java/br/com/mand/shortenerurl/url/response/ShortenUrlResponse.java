@@ -1,4 +1,4 @@
-package br.com.mand.shortenerurl.response;
+package br.com.mand.shortenerurl.url.response;
 
 public class ShortenUrlResponse {
 
