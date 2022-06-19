@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Data
 @Table
@@ -20,7 +21,5 @@ public class ShortenUrl {
 
     private String urlRedirect;
 
-    @Min(5)
-    @Max(10)
     private String shortUrl;
 }
