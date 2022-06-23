@@ -30,9 +30,8 @@ public class URLService {
                 .limit(targetStringLength)
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString();
-        System.out.println(generatedString);
+
         shortenUrl.setShortUrl(generatedString);
-        System.out.println(shortenUrl);
         urlRepository.save(shortenUrl);
     }
 
