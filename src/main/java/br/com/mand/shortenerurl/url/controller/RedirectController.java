@@ -17,7 +17,6 @@ public class RedirectController {
 
     @GetMapping("/{urlShort}")
     public RedirectView redirecUrl(@PathVariable String urlShort){
-
         return new RedirectView(urlService.findByUrlShort(urlShort));
     }
 

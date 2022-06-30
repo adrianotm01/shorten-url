@@ -2,6 +2,7 @@ package br.com.mand.shortenerurl.url.service;
 
 import br.com.mand.shortenerurl.url.entity.ShortenUrl;
 import br.com.mand.shortenerurl.url.repository.URLRepository;
+import br.com.mand.shortenerurl.url.response.ShortenUrlResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class URLService {
     @Value("${server.port}")
     private String serverPort;
 
-    public void shortUrl(ShortenUrl shortenUrl) {
+    public ShortenUrlResponse shortUrl(ShortenUrl shortenUrl) {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         Random random = new Random();
@@ -32,11 +33,11 @@ public class URLService {
                 .toString();
 
         shortenUrl.setShortUrl(generatedString);
-        urlRepository.save(shortenUrl);
+        shortenUrl = urlRepository.save(shortenUrl);
+        return new ShortenUrlResponse(shortenUrl, serverPort);
     }
 
     public String findByUrlShort(String urlShort) {
-        System.out.println(urlShort);
         return urlRepository.findByShortUrl(urlShort).orElseThrow(()->new RuntimeException()).getUrlRedirect();
     }
 }

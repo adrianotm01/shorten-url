@@ -1,6 +1,7 @@
 package br.com.mand.shortenerurl.url.controller;
 
 import br.com.mand.shortenerurl.url.request.ShortenUrlForm;
+import br.com.mand.shortenerurl.url.response.ShortenUrlResponse;
 import br.com.mand.shortenerurl.url.service.URLService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class URLController {
     @PostMapping
     public ResponseEntity<Void> shortenUrl(@RequestBody ShortenUrlForm form){
         System.out.println(form);
-        urlService.shortUrl(form.getEntity());
-        return new ResponseEntity(HttpStatus.CREATED);
+        ShortenUrlResponse shortenUrlResponse = urlService.shortUrl(form.getEntity());
+        return new ResponseEntity(shortenUrlResponse,HttpStatus.CREATED);
     }
 
 }
